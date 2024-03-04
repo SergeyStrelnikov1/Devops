@@ -3,6 +3,7 @@ services:
   my_app:
     container_name: my_app
     hostname: my_app
+    image: sergei200/exam:latest
     build: 
       context: .
       dockerfile: Dockerfile
