@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="container">
+    <h1 class="title my-3 font-weight-bold text-center text-black">Информация о скидках</h1>
+    <div class="h-100 text-center d-flex p-3">
+        <div class="m-auto">
+            {% if discounts %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Название акции</th>
+                        <th scope="col">Описание акции</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for discount in discounts %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td class="book-title">{{ discount.title }}</td>
+                        <td>{{ discount.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div>Скидок пока нет</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <h1 class="title my-3 font-weight-bold text-center text-black">Получить информацию о бонусах</h1>
+
+    <form action="" method="post">
+        <div class="form-floating mb-2">
+            <input type="text" class="form-control" id="input1" placeholder="" name="telephone" value="">
+            <label for="floatingInput">Номер телефона</label>
+        </div>
+
+        <div class="form-floating mb-2">
+            <input type="text" class="form-control" id="input1" placeholder="" name="password" value="">
+            <label for="floatingInput">Пароль</label>
+        </div>
+        <button class="btn btn-primary mb-2" type="submit">Найти</button>
+    </form>
+
+    <div class="m-auto">
+        {% if user %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Телефон</th>
+                    <th scope="col">Количество бонусов</th>
+                    <th scope="col">Дата последней покупки</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="book-title">{{ user.name }}</td>
+                    <td>{{ user.telephone }}</td>
+                    <td>{{ user.bonus_count }}</td>
+                    <td>{{ user.last_purchase }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
